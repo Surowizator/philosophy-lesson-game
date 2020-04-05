@@ -1,0 +1,19 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: BioRhyme;
+}
+
+body {
+  background-image: url('~assets/img/background.jpg');
+}
+
+@each $size in $backgrounds {
+  @media (max-width: $size) {
+    body {
+      background-image: url(#{'~assets/img/background.jpg?size='$size})
+    }
+  }
+}
