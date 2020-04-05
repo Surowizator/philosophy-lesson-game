@@ -1,0 +1,24 @@
+.decision {
+  margin-top: 50px;
+
+  .question {
+    font-size: 1.3em;
+    padding: 5px;
+  }
+
+  .card {
+    margin: 25px auto 0 auto;
+    margin-bottom: 0;
+    padding: 0;
+    width: $card-width + 20px;
+    height: $card-width * $card-height-to-width + 20px;
+    border: 10px solid $border-color;
+    border-radius: 20px;
+
+    img {
+      width: $card-width;
+      height: $card-width * $card-height-to-width;
+      border-radius: 10px;
+    }
+  }
+}
