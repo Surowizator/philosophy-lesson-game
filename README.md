@@ -1,8 +1,6 @@
 # philosophy
 
-Web game inspired by 
-[Reigns] (https://en.wikipedia.org/wiki/Reigns_(video_game))
- and my highschool philosophy teacher.
+Web game inspired by [Reigns](https://en.wikipedia.org/wiki/Reigns_(video_game)) and my highschool philosophy teacher.
 
 ## Build Setup
 
