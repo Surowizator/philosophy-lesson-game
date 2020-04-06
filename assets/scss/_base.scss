@@ -13,7 +13,23 @@ body {
 @each $size in $backgrounds {
   @media (max-width: $size) {
     body {
-      background-image: url(#{'~assets/img/background.jpg?size='$size})
+      background-image: url(#{'~assets/img/background.jpg?size='$size});
     }
+  }
+}
+
+img {
+  user-select: none;
+}
+
+.container {
+  width: $container-width;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #915B2F;
+  text-align: center;
+
+  @media (max-width: 450px) {
+    width: $container-width + 10vw;
   }
 }

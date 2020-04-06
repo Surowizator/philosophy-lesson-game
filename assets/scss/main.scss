@@ -3,15 +3,3 @@
 @import 'values';
 @import 'card';
 @import 'header';
-
-.container {
-  width: $container-width;
-  height: 100vh;
-  margin: 0 auto;
-  background-color: #915B2F;
-  text-align: center;
-
-  @media (max-width: 450px) {
-    width: $container-width + 10vw;
-  }
-}
