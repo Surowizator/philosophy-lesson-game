@@ -11,10 +11,27 @@
     box-shadow: 0 0 60px 10px $border-color;
     width: $card-width;
     height: $card-width * $card-height-to-width;
+    position: relative;
 
+    &-text {
+      background-color: rgba(0, 0, 0, 0.73);
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      padding: 15px 5px;
+      opacity: 0;
+    }
+    
     img {
       width: $card-width;
       height: $card-width * $card-height-to-width;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
     }
   }
 }
