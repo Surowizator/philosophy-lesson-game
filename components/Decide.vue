@@ -18,10 +18,12 @@ export default {
   name: 'Decide',
   data() {
     return {
-      clicked: false,
       mouseStart: 0,
+      clicked: false,
       turnedL: false,
-      turnedR: false
+      turnedR: false,
+      overL: false,
+      overR: false
     };
   },
   computed: mapGetters(['getDecisions']),
@@ -32,18 +34,22 @@ export default {
     dragDown(e) {
       this.clicked = true;
       this.mouseStart = e.clientX;
-      console.log('down');
     },
     dragUp(e) {
-      console.log('up');
       if (e.clientX - this.mouseStart > 30) {
-        this.turnedR = true;
-        this.turnedL = false;
-        console.log('move');
+        if (this.turnedR) {
+          this.overR = true;
+        } else {
+          this.turnedR = true;
+          this.turnedL = false;
+        }
       } else if (e.clientX - this.mouseStart < -30) {
-        this.turnedL = true;
-        this.turnedR = false;
-        console.log('move');
+        if (this.turnedL) {
+          this.overL = true;
+        } else {
+          this.turnedL = true;
+          this.turnedR = false;
+        }
       }
       this.clicked = false;
     }
