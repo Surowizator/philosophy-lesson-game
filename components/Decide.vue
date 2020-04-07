@@ -1,16 +1,12 @@
 <template>
-  <div class="decision">
+  <div class="decision" @mouseup="dragUp">
     <p class="question">
       {{ decision.question }}
     </p>
-    <div
-      class="card"
-      @mousedown="dragDown"
-      @mouseup="dragUp"
-      @mousemove="dragMove"
-    >
-      <p class="card-text">{{ turnedL ? decision.option1.text }}</p>
-      <img src="~assets/img/florka.jpg" alt="florka" />
+    <div class="card" @mousedown="dragDown">
+      <p class="card-text">
+        {{ turnedL ? decision.option1.text : turnedR ? decision.option2.text : '' }}
+      </p>
     </div>
   </div>
 </template>
@@ -30,26 +26,26 @@ export default {
   },
   computed: mapGetters(['getDecisions']),
   created() {
-    this.decision = this.getDecisions[
-      Math.floor(Math.random() * this.getDecisions.length)
-    ];
+    this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
   },
   methods: {
     dragDown(e) {
       this.clicked = true;
       this.mouseStart = e.clientX;
+      console.log('down');
     },
     dragUp(e) {
-      this.clicked = false;
-    },
-    dragMove(e) {
-      if (
-        this.clicked &&
-        e.clientX - this.mouseStart > window.innerWidth / 15
-      ) {
-        this.clicked = false;
-        this.turned = true;
+      console.log('up');
+      if (e.clientX - this.mouseStart > 30) {
+        this.turnedR = true;
+        this.turnedL = false;
+        console.log('move');
+      } else if (e.clientX - this.mouseStart < -30) {
+        this.turnedL = true;
+        this.turnedR = false;
+        console.log('move');
       }
+      this.clicked = false;
     }
   }
 };

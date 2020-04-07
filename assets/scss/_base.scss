@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   font-family: BioRhyme;
+  user-select: none;
 }
 
 body {
@@ -16,10 +17,6 @@ body {
       background-image: url(#{'~assets/img/background.jpg?size='$size});
     }
   }
-}
-
-img {
-  user-select: none;
 }
 
 .container {
