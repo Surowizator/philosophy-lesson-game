@@ -3,7 +3,7 @@
     <p class="question">
       {{ decision.question }}
     </p>
-    <div class="card" @mousedown="dragDown">
+    <div class="card" tabindex="0" @mousedown="dragDown" v-on-clickout="returnFocus" @keyup="dragKey">
       <p class="card-text">
         {{ turnedL ? decision.option1.text : turnedR ? decision.option2.text : '' }}
       </p>
@@ -13,9 +13,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { directive as onClickout } from 'vue-clickout';
 
 export default {
   name: 'Decide',
+  directives: {
+    onClickout
+  },
   data() {
     return {
       mouseStart: 0,
@@ -30,20 +34,23 @@ export default {
   created() {
     this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
   },
+  mounted() {
+    document.querySelector('.card').focus();
+  },
   methods: {
     dragDown(e) {
       this.clicked = true;
       this.mouseStart = e.clientX;
     },
     dragUp(e) {
-      if (e.clientX - this.mouseStart > 30) {
+      if (this.clicked && e.clientX - this.mouseStart > 30) {
         if (this.turnedR) {
           this.overR = true;
         } else {
           this.turnedR = true;
           this.turnedL = false;
         }
-      } else if (e.clientX - this.mouseStart < -30) {
+      } else if (this.clicked && e.clientX - this.mouseStart < -30) {
         if (this.turnedL) {
           this.overL = true;
         } else {
@@ -52,6 +59,12 @@ export default {
         }
       }
       this.clicked = false;
+    },
+    dragKey(e) {
+      console.log(e);
+    },
+    returnFocus(e) {
+      e.originalTarget.focus();
     }
   }
 };
