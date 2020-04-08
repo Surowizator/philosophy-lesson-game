@@ -3,7 +3,7 @@
     <p class="question">
       {{ decision.question }}
     </p>
-    <div class="card" tabindex="0" @mousedown="dragDown" v-on-clickout="returnFocus" @keyup="dragKey">
+    <div v-on-clickout="returnFocus" class="card" tabindex="0" @mousedown="dragDown" @keyup="dragKey">
       <p class="card-text">
         {{ turnedL ? decision.option1.text : turnedR ? decision.option2.text : '' }}
       </p>
@@ -61,10 +61,24 @@ export default {
       this.clicked = false;
     },
     dragKey(e) {
-      console.log(e);
+      if (e.key === 'ArrowRight') {
+        if (this.turnedR) {
+          this.overR = true;
+        } else {
+          this.turnedR = true;
+          this.turnedL = false;
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (this.turnedL) {
+          this.overL = true;
+        } else {
+          this.turnedL = true;
+          this.turnedR = false;
+        }
+      }
     },
-    returnFocus(e) {
-      e.originalTarget.focus();
+    returnFocus() {
+      document.querySelector('.card').focus();
     }
   }
 };
