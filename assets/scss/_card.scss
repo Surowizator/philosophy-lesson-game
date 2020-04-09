@@ -2,8 +2,16 @@
   margin-top: 50px;
 
   .question {
-    font-size: 1.3em;
+    font-size: 1.5em;
     padding: 5px;
+
+    @media (max-width: 750px) {
+      font-size: 1.3em;
+    }
+
+    @media (max-width: 430px) {
+      font-size: 1.2em;
+    }
   }
 
   .card {
@@ -14,18 +22,59 @@
     background-image: url('~assets/img/florka.jpg');
     background-size: contain;
     cursor: grab;
+
+    @media (max-width: 1359px) {
+      font-size: 16px;
+    }
     
-    @media(max-width: 680px) {
-      height: ($card-width + 10vw) * $card-height-to-width;
-      width: $card-width + 10vw;
+    @media(max-width: 1000px) {
+      height: ($card-width + 5vw) * $card-height-to-width;
+      width: $card-width + 5vw;
     }
 
+    @media(max-width: 788px) {
+      height: ($card-width + 10vw) * $card-height-to-width;
+      width: $card-width + 10vw;
+      font-size: 15px;
+    }
+
+    @media(max-width: 620px) {
+      height: ($card-width + 18vw) * $card-height-to-width;
+      width: $card-width + 18vw;
+    }
+
+    @media(max-width: 498px) {
+      height: ($card-width + 23vw) * $card-height-to-width;
+      width: $card-width + 23vw;
+    }
+
+    @media(max-width: 428px) {
+      height: ($card-width + 28vw) * $card-height-to-width;
+      width: $card-width + 28vw;
+    }
+
+    @media(max-width: 383px) {
+      height: ($card-width + 32vw) * $card-height-to-width;
+      width: $card-width + 32vw;
+    }
+    
     &-text {
       background-color: rgba(0, 0, 0, 0.73);
       color: white;
       width: 100%;
-      padding: 15px 5px;
+      padding: 15px 0;
+      font-size: 1em;
       // opacity: 0;
+
+      @media (max-width: 1054px) {
+        padding: 10px 0;
+      }
+
+      @media (max-width: 600px) {
+        padding: 7px 0;
+      }
+
+
     }
   }
 }

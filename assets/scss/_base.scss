@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   font-family: BioRhyme;
+  font-size: 18px;
   user-select: none;
   outline: none;
 }
@@ -27,7 +28,12 @@ body {
   background-color: #915B2F;
   text-align: center;
 
-  @media (max-width: 450px) {
+  @media (max-width: 600px) {
     width: $container-width + 10vw;
   }
+
+  @media (max-width: 480px) {
+    width: $container-width + 15vw;
+  }
+
 }

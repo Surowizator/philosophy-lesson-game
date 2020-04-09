@@ -2,6 +2,14 @@ header {
   font-size: $container-width / 15;
   text-align: center;
 
+  @media (max-width: 600px) {
+    font-size: ($container-width + 10vw) / 15;
+  }
+
+  @media (max-width: 480px) {
+    font-size: ($container-width + 15vw) / 15;
+  }
+
   h1 {
     font-size: 1em;
 
