@@ -27,6 +27,7 @@ body {
   margin: 0 auto;
   background-color: #915B2F;
   text-align: center;
+  overflow: hidden;
 
   @media (max-width: 600px) {
     width: $container-width + 10vw;

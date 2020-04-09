@@ -12,6 +12,7 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore ."
   },
   "dependencies": {
+    "gsap": "^3.2.6",
     "nuxt": "^2.0.0",
     "vue-clickout": "^1.0.0"
   },

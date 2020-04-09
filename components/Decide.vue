@@ -21,6 +21,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { directive as onClickout } from 'vue-clickout';
+import { gsap } from 'gsap';
 
 export default {
   name: 'Decide',
@@ -40,6 +41,42 @@ export default {
     };
   },
   computed: mapGetters(['getDecisions']),
+  watch: {
+    turnedL() {
+      if (this.turnedL) {
+        gsap.to('.card', { rotate: -15, x: -30, duration: 1 });
+      }
+    },
+    turnedR() {
+      if (this.turnedR) {
+        gsap.to('.card', { rotate: 15, x: 30, duration: 1 });
+      }
+    },
+    overL() {
+      if (this.overL) {
+        this.turnedL = false;
+        this.turnedR = false;
+        this.overL = false;
+        this.overR = false;
+        const tl = gsap.timeline();
+        tl.to('.card', { rotate: -40, x: -90, y: 500, opacity: 0, duration: 0.7, ease: 'power4 out' });
+        tl.to('.card', { rotate: 0, x: 0, duration: 0.3 });
+        tl.to('.card', { y: 0, opacity: 1, duration: 0.7, ease: 'power4 out' });
+      }
+    },
+    overR() {
+      if (this.overR) {
+        this.turnedL = false;
+        this.turnedR = false;
+        this.overL = false;
+        this.overR = false;
+        const tl = gsap.timeline();
+        tl.to('.card', { rotate: 40, x: 90, y: 500, opacity: 0, duration: 0.7, ease: 'power4 out' });
+        tl.to('.card', { rotate: 0, x: 0, duration: 0.3 });
+        tl.to('.card', { y: 0, opacity: 1, duration: 0.7, ease: 'power4 out' });
+      }
+    }
+  },
   created() {
     this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
   },
