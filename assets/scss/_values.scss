@@ -12,12 +12,11 @@
 
   .val {
     width: $container-width * 16/100;
-    max-width: 100px;
     height: $container-width * 16/100;
     padding: 15px;
     margin: 5px 0;
     border: 5px solid $border-color;
-    border-radius: 10px;
+    border-radius: 20%;
     overflow: hidden;
     position: relative;
     box-shadow: 3px 2px 3px lighten($border-color, 20%);
@@ -33,7 +32,11 @@
       height: ($container-width + 15vw) * 16/100;
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 700px) {
+      border: 4px solid $border-color;
+    }
+
+    @media (max-width: 410px) {
       border: 3px solid $border-color;
     }
 
