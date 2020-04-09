@@ -1,9 +1,16 @@
 <template>
-  <div class="decision" @mouseup="dragUp">
+  <div class="decision" @mouseup="dragUp" @touchmove="mobileMove" @touchend="mobileEnd">
     <p class="question">
       {{ decision.question }}
     </p>
-    <div v-on-clickout="returnFocus" class="card" tabindex="0" @mousedown="dragDown" @keyup="dragKey">
+    <div
+      v-on-clickout="returnFocus"
+      class="card"
+      tabindex="0"
+      @mousedown="dragDown"
+      @keyup="dragKey"
+      @touchstart="mobileStart"
+    >
       <p class="card-text">
         {{ turnedL ? decision.option1.text : turnedR ? decision.option2.text : '' }}
       </p>
@@ -23,6 +30,8 @@ export default {
   data() {
     return {
       mouseStart: 0,
+      touchStart: 0,
+      touchEnd: 0,
       clicked: false,
       turnedL: false,
       turnedR: false,
@@ -69,6 +78,29 @@ export default {
           this.turnedL = false;
         }
       } else if (e.key === 'ArrowLeft') {
+        if (this.turnedL) {
+          this.overL = true;
+        } else {
+          this.turnedL = true;
+          this.turnedR = false;
+        }
+      }
+    },
+    mobileStart(e) {
+      this.touchStart = e.touches[0].pageX;
+    },
+    mobileMove(e) {
+      this.touchEnd = e.touches[0].pageX;
+    },
+    mobileEnd() {
+      if (this.touchEnd - this.touchStart > 15) {
+        if (this.turnedR) {
+          this.overR = true;
+        } else {
+          this.turnedR = true;
+          this.turnedL = false;
+        }
+      } else if (this.touchEnd - this.touchStart < -15) {
         if (this.turnedL) {
           this.overL = true;
         } else {
