@@ -4,14 +4,14 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Pablo Florka | Gra',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'Gra o Pablu Florce'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -56,13 +56,13 @@ export default {
             adapter: require('responsive-loader/sharp')
           }
         }
-      })
+      });
 
       config.module.rules.forEach(value => {
         if (String(value.test) === String(/\.(png|jpe?g|gif|svg|webp)$/)) {
-          value.test = /\.(svg|webp)$/
+          value.test = /\.(svg|webp)$/;
         }
-      })
+      });
     }
   }
-}
+};
