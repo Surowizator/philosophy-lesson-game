@@ -28,17 +28,27 @@ export default {
   computed: mapGetters(['getLearning', 'getJoy', 'getMoney', 'getSanity']),
   watch: {
     getLearning() {
-      gsap.to('#learning', { y: `${100 - this.getLearning * 10}%`, duration: 0.1 });
+      gsap.to('#learning', { y: `${100 - this.getLearning * 20}%`, duration: 0.2 });
     },
     getJoy() {
-      gsap.to('#joy', { y: `${100 - this.getJoy * 10}%`, duration: 0.1 });
+      gsap.to('#joy', { y: `${100 - this.getJoy * 20}%`, duration: 0.2 });
     },
     getMoney() {
-      gsap.to('#money', { y: `${100 - this.getMoney * 10}%`, duration: 0.1 });
+      gsap.to('#money', { y: `${100 - this.getMoney * 20}%`, duration: 0.2 });
     },
     getSanity() {
-      gsap.to('#sanity', { y: `${100 - this.getSanity * 10}%`, duration: 0.1 });
+      gsap.to('#sanity', { y: `${100 - this.getSanity * 20}%`, duration: 0.2 });
     }
+  },
+  mounted() {
+    document.querySelector('#learning').style.transform = `translateY(${100 - this.getLearning * 20}%`;
+    document.querySelector('#joy').style.transform = `translateY(${100 - this.getLearning * 20}%`;
+    document.querySelector('#money').style.transform = `translateY(${100 - this.getLearning * 20}%`;
+    document.querySelector('#sanity').style.transform = `translateY(${100 - this.getLearning * 20}%`;
+    document.querySelector('#learning').style.opacity = 1;
+    document.querySelector('#joy').style.opacity = 1;
+    document.querySelector('#money').style.opacity = 1;
+    document.querySelector('#sanity').style.opacity = 1;
   }
 };
 </script>

@@ -71,7 +71,7 @@ export default {
     },
     turnedR() {
       if (this.turnedR) {
-        gsap.to('.card', { rotate: 15, x: 30, opacity: 1, duration: 1 });
+        gsap.to('.card', { rotate: 15, x: 30, duration: 1 });
         gsap.to('.card-text', { opacity: 1, duration: 1 });
       }
     },
