@@ -87,10 +87,10 @@ export default {
         this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
         if (!this.decision) {
           this.decision = {};
-          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggleClass('gameEnd'));
+          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
         }
         if (!this.getValuesLevels) {
-          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggleClass('gameEnd'));
+          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
         }
       }
     },
@@ -112,7 +112,7 @@ export default {
           document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
         }
         if (!this.getValuesLevels) {
-          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggleClass('gameEnd'));
+          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
         }
       }
     }
