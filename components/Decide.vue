@@ -85,6 +85,7 @@ export default {
         this.changeValues(this.decision.option1);
         const tl = gsap.timeline();
         tl.to('.card', { rotate: -40, x: -90, y: 500, opacity: 0, duration: 0.7, ease: 'power4 out' });
+        tl.to('.card-text', { opacity: 0, duration: 0.1 });
         tl.to('.card', { rotate: 0, x: 0, duration: 0.3 });
         tl.to('.card', { y: 0, opacity: 1, duration: 0.7, ease: 'power4 out' });
         setTimeout(() => {
@@ -98,7 +99,7 @@ export default {
             document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
           }
           this.turnable = true;
-        }, 1500);
+        }, 1100);
       }
     },
     overR() {
@@ -111,6 +112,7 @@ export default {
         this.changeValues(this.decision.option2);
         const tl = gsap.timeline();
         tl.to('.card', { rotate: 40, x: 90, y: 500, opacity: 0, duration: 0.7, ease: 'power4 out' });
+        tl.to('.card-text', { opacity: 0, duration: 0.1 });
         tl.to('.card', { rotate: 0, x: 0, duration: 0.3 });
         tl.to('.card', { y: 0, opacity: 1, duration: 0.7, ease: 'power4 out' });
         setTimeout(() => {
@@ -124,7 +126,7 @@ export default {
             document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
           }
           this.turnable = true;
-        }, 1500);
+        }, 1100);
       }
     }
   },
