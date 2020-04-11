@@ -11,5 +11,18 @@ export default [
       up: 'joy',
       down: 'learning'
     }
+  },
+  {
+    question: 'Zrobić niezapowiedzianą kartkówkę?',
+    option1: {
+      text: 'Tak',
+      up: 'learning',
+      down: 'joy'
+    },
+    option2: {
+      text: 'Nie',
+      up: 'sanity',
+      down: 'learning'
+    }
   }
 ];
