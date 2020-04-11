@@ -46,6 +46,7 @@ export default {
       turnedR: false,
       overL: false,
       overR: false,
+      turnable: true,
       decision: {}
     };
   },
@@ -65,55 +66,65 @@ export default {
     turnedL() {
       if (this.turnedL) {
         gsap.to('.card', { rotate: -15, x: -30, duration: 1 });
+        gsap.to('.card-text', { opacity: 1, duration: 1 });
       }
     },
     turnedR() {
       if (this.turnedR) {
-        gsap.to('.card', { rotate: 15, x: 30, duration: 1 });
+        gsap.to('.card', { rotate: 15, x: 30, opacity: 1, duration: 1 });
+        gsap.to('.card-text', { opacity: 1, duration: 1 });
       }
     },
     overL() {
       if (this.overL) {
+        this.turnable = false;
         this.turnedL = false;
         this.turnedR = false;
         this.overL = false;
         this.overR = false;
+        this.changeValues(this.decision.option1);
         const tl = gsap.timeline();
         tl.to('.card', { rotate: -40, x: -90, y: 500, opacity: 0, duration: 0.7, ease: 'power4 out' });
         tl.to('.card', { rotate: 0, x: 0, duration: 0.3 });
         tl.to('.card', { y: 0, opacity: 1, duration: 0.7, ease: 'power4 out' });
-        this.changeValues(this.decision.option1);
-        this.deleteDecision(this.decision);
-        this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
-        if (!this.decision) {
-          this.decision = {};
-          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
-        }
-        if (!this.getValuesLevels) {
-          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
-        }
+        setTimeout(() => {
+          this.deleteDecision(this.decision);
+          this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
+          if (!this.decision) {
+            this.decision = {};
+            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+          }
+          if (!this.getValuesLevels) {
+            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+          }
+          this.turnable = true;
+        }, 1500);
       }
     },
     overR() {
       if (this.overR) {
+        this.turnable = false;
         this.turnedL = false;
         this.turnedR = false;
         this.overL = false;
         this.overR = false;
+        this.changeValues(this.decision.option2);
         const tl = gsap.timeline();
         tl.to('.card', { rotate: 40, x: 90, y: 500, opacity: 0, duration: 0.7, ease: 'power4 out' });
         tl.to('.card', { rotate: 0, x: 0, duration: 0.3 });
         tl.to('.card', { y: 0, opacity: 1, duration: 0.7, ease: 'power4 out' });
-        this.changeValues(this.decision.option2);
-        this.deleteDecision(this.decision);
-        this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
-        if (!this.decision) {
-          this.decision = {};
-          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
-        }
-        if (!this.getValuesLevels) {
-          document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
-        }
+        setTimeout(() => {
+          this.deleteDecision(this.decision);
+          this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
+          if (!this.decision) {
+            this.decision = {};
+            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+          }
+          if (!this.getValuesLevels) {
+            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+          }
+          this.turnable = true;
+        }, 1500);
       }
     }
   },
@@ -123,64 +134,76 @@ export default {
   },
   methods: {
     dragDown(e) {
-      this.clicked = true;
-      this.mouseStart = e.clientX;
+      if (this.turnable) {
+        this.clicked = true;
+        this.mouseStart = e.clientX;
+      }
     },
     dragUp(e) {
-      if (this.clicked && e.clientX - this.mouseStart > 30) {
-        if (this.turnedR) {
-          this.overR = true;
-        } else {
-          this.turnedR = true;
-          this.turnedL = false;
+      if (this.turnable) {
+        if (this.clicked && e.clientX - this.mouseStart > 30) {
+          if (this.turnedR) {
+            this.overR = true;
+          } else {
+            this.turnedR = true;
+            this.turnedL = false;
+          }
+        } else if (this.clicked && e.clientX - this.mouseStart < -30) {
+          if (this.turnedL) {
+            this.overL = true;
+          } else {
+            this.turnedL = true;
+            this.turnedR = false;
+          }
         }
-      } else if (this.clicked && e.clientX - this.mouseStart < -30) {
-        if (this.turnedL) {
-          this.overL = true;
-        } else {
-          this.turnedL = true;
-          this.turnedR = false;
-        }
+        this.clicked = false;
       }
-      this.clicked = false;
     },
     dragKey(e) {
-      if (e.key === 'ArrowRight') {
-        if (this.turnedR) {
-          this.overR = true;
-        } else {
-          this.turnedR = true;
-          this.turnedL = false;
-        }
-      } else if (e.key === 'ArrowLeft') {
-        if (this.turnedL) {
-          this.overL = true;
-        } else {
-          this.turnedL = true;
-          this.turnedR = false;
+      if (this.turnable) {
+        if (e.key === 'ArrowRight') {
+          if (this.turnedR) {
+            this.overR = true;
+          } else {
+            this.turnedR = true;
+            this.turnedL = false;
+          }
+        } else if (e.key === 'ArrowLeft') {
+          if (this.turnedL) {
+            this.overL = true;
+          } else {
+            this.turnedL = true;
+            this.turnedR = false;
+          }
         }
       }
     },
     mobileStart(e) {
-      this.touchStart = e.touches[0].pageX;
+      if (this.turnable) {
+        this.touchStart = e.touches[0].pageX;
+      }
     },
     mobileMove(e) {
-      this.touchEnd = e.touches[0].pageX;
+      if (this.turnable) {
+        this.touchEnd = e.touches[0].pageX;
+      }
     },
     mobileEnd() {
-      if (this.touchEnd - this.touchStart > 15) {
-        if (this.turnedR) {
-          this.overR = true;
-        } else {
-          this.turnedR = true;
-          this.turnedL = false;
-        }
-      } else if (this.touchEnd - this.touchStart < -15) {
-        if (this.turnedL) {
-          this.overL = true;
-        } else {
-          this.turnedL = true;
-          this.turnedR = false;
+      if (this.turnable) {
+        if (this.touchEnd - this.touchStart > 15) {
+          if (this.turnedR) {
+            this.overR = true;
+          } else {
+            this.turnedR = true;
+            this.turnedL = false;
+          }
+        } else if (this.touchEnd - this.touchStart < -15) {
+          if (this.turnedL) {
+            this.overL = true;
+          } else {
+            this.turnedL = true;
+            this.turnedR = false;
+          }
         }
       }
     },
