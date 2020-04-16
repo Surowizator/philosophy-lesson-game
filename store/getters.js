@@ -1,5 +1,5 @@
 export default {
-  getDecisions: state => state.decisions,
+  getDecisions: state => (state.decisions.length ? state.decisions : [{ question: '' }]),
   getLearning: state => state.learning,
   getJoy: state => state.joy,
   getMoney: state => state.money,

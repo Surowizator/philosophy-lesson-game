@@ -18,10 +18,10 @@
       </div>
     </div>
     <div v-show="displayLost">
-      <p class="gameEnd">Przegrałeś :(</p>
+      <p class="gameEnd" @click="reload">Przegrałeś :(</p>
     </div>
     <div v-show="displayWon">
-      <p class="gameEnd">Wygrałeś!</p>
+      <p class="gameEnd" @click="reload">Wygrałeś :)</p>
     </div>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
       overL: false,
       overR: false,
       turnable: true,
-      decision: {}
+      decision: { question: '' }
     };
   },
   computed: {
@@ -92,11 +92,10 @@ export default {
           this.deleteDecision(this.decision);
           this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
           if (!this.decision.question) {
-            this.decision = {};
-            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+            document.querySelectorAll('.gameEnd').forEach(e => (e.style.display = 'block'));
           }
           if (!this.getValuesLevels) {
-            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+            document.querySelectorAll('.gameEnd').forEach(e => (e.style.display = 'block'));
           }
           this.turnable = true;
         }, 1100);
@@ -119,11 +118,10 @@ export default {
           this.deleteDecision(this.decision);
           this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
           if (!this.decision.question) {
-            this.decision = {};
-            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+            document.querySelectorAll('.gameEnd').forEach(e => (e.style.display = 'block'));
           }
           if (!this.getValuesLevels) {
-            document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
+            document.querySelectorAll('.gameEnd').forEach(e => (e.style.display = 'block'));
           }
           this.turnable = true;
         }, 1100);
@@ -211,6 +209,9 @@ export default {
     },
     returnFocus() {
       document.querySelector('.card').focus();
+    },
+    reload() {
+      window.location.reload();
     },
     ...mapActions(['changeValues', 'deleteDecision'])
   }
