@@ -65,13 +65,13 @@ export default {
   watch: {
     turnedL() {
       if (this.turnedL) {
-        gsap.to('.card', { rotate: -15, x: -30, duration: 1 });
+        gsap.to('.card', { rotate: -10, x: -30, duration: 1 });
         gsap.to('.card-text', { opacity: 1, duration: 1 });
       }
     },
     turnedR() {
       if (this.turnedR) {
-        gsap.to('.card', { rotate: 15, x: 30, duration: 1 });
+        gsap.to('.card', { rotate: 10, x: 30, duration: 1 });
         gsap.to('.card-text', { opacity: 1, duration: 1 });
       }
     },
@@ -91,7 +91,7 @@ export default {
         setTimeout(() => {
           this.deleteDecision(this.decision);
           this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
-          if (!this.decision) {
+          if (!this.decision.question) {
             this.decision = {};
             document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
           }
@@ -118,7 +118,7 @@ export default {
         setTimeout(() => {
           this.deleteDecision(this.decision);
           this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
-          if (!this.decision) {
+          if (!this.decision.question) {
             this.decision = {};
             document.querySelectorAll('.gameEnd').forEach(e => e.classList.toggle('gameEnd'));
           }

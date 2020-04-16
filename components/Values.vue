@@ -28,16 +28,16 @@ export default {
   computed: mapGetters(['getLearning', 'getJoy', 'getMoney', 'getSanity']),
   watch: {
     getLearning() {
-      gsap.to('#learning', { y: `${100 - this.getLearning * 20}%`, duration: 0.2 });
+      gsap.to('#learning', { y: `${this.getLearning < 6 ? 100 - this.getLearning * 20 : 0}%`, duration: 0.2 });
     },
     getJoy() {
-      gsap.to('#joy', { y: `${100 - this.getJoy * 20}%`, duration: 0.2 });
+      gsap.to('#joy', { y: `${this.getJoy < 6 ? 100 - this.getJoy * 20 : 0}%`, duration: 0.2 });
     },
     getMoney() {
-      gsap.to('#money', { y: `${100 - this.getMoney * 20}%`, duration: 0.2 });
+      gsap.to('#money', { y: `${this.getMoney < 6 ? 100 - this.getMoney * 20 : 0}%`, duration: 0.2 });
     },
     getSanity() {
-      gsap.to('#sanity', { y: `${100 - this.getSanity * 20}%`, duration: 0.2 });
+      gsap.to('#sanity', { y: `${this.getSanity < 6 ? 100 - this.getSanity * 20 : 0}%`, duration: 0.2 });
     }
   },
   mounted() {

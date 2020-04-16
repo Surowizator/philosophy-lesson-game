@@ -1,5 +1,5 @@
 .decision {
-  margin-top: 50px;
+  margin-top: 2vh;
 
   .question {
     font-size: 1.5em;
@@ -15,7 +15,7 @@
   }
 
   .card {
-    margin: 30px auto 0 auto;
+    margin: 2vh auto 0 auto;
     box-shadow: 0 0 60px 10px $border-color;
     width: $card-width;
     height: $card-width * $card-height-to-width;

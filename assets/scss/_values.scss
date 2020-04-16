@@ -23,13 +23,18 @@
     transition: ease-in-out border-color .5s, ease-in-out box-shadow .5s;
 
     @media (max-width: 600px) {
-      width: $container-width * 16/100;
-      height: $container-width * 16/100;
+      width: ($container-width + 10vw) * 16/100;
+      height: ($container-width + 10vw) * 16/100;
     }
   
-    @media (max-width: 480px) {
-      width: ($container-width + 10vw) * 16/100;
+    @media (max-width: 500px) {
+      width: ($container-width + 15vw) * 16/100;
       height: ($container-width + 15vw) * 16/100;
+    }
+  
+    @media (max-width: 400px) {
+      width: ($container-width + 20vw) * 16/100;
+      height: ($container-width + 20vw) * 16/100;
     }
 
     @media (max-width: 700px) {

@@ -11,6 +11,7 @@
 
 body {
   background-image: url('~assets/img/background.jpg');
+  overflow: hidden;
 }
 
 @each $size in $backgrounds {
@@ -27,14 +28,17 @@ body {
   margin: 0 auto;
   background-color: #915B2F;
   text-align: center;
-  overflow: hidden;
 
   @media (max-width: 600px) {
     width: $container-width + 10vw;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 500px) {
     width: $container-width + 15vw;
+  }
+
+  @media (max-width: 400px) {
+    width: $container-width + 20vw;
   }
 
 }
