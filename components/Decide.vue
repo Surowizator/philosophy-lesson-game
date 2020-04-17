@@ -131,6 +131,12 @@ export default {
   mounted() {
     this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
     document.querySelector('.card').focus();
+    setTimeout(() => {
+      const tl = gsap.timeline();
+      tl.to('.card', { rotate: -10, duration: 0.6 });
+      tl.to('.card', { rotate: 10, duration: 1.2 });
+      tl.to('.card', { rotate: 0, duration: 0.6 });
+    }, 1200);
   },
   methods: {
     dragDown(e) {
