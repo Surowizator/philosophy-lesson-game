@@ -29,15 +29,27 @@ export default {
   watch: {
     getLearning() {
       gsap.to('#learning', { y: `${this.getLearning < 6 ? 100 - this.getLearning * 20 : 0}%`, duration: 0.2 });
+      if (this.getLearning > 5) {
+        gsap.to('#learning', { backgroundColor: '#d02405', duration: 0.2 });
+      }
     },
     getJoy() {
       gsap.to('#joy', { y: `${this.getJoy < 6 ? 100 - this.getJoy * 20 : 0}%`, duration: 0.2 });
+      if (this.getJoy > 5) {
+        gsap.to('#joy', { backgroundColor: '#d02405', duration: 0.2 });
+      }
     },
     getMoney() {
       gsap.to('#money', { y: `${this.getMoney < 6 ? 100 - this.getMoney * 20 : 0}%`, duration: 0.2 });
+      if (this.getMoney > 5) {
+        gsap.to('#money', { backgroundColor: '#d02405', duration: 0.2 });
+      }
     },
     getSanity() {
       gsap.to('#sanity', { y: `${this.getSanity < 6 ? 100 - this.getSanity * 20 : 0}%`, duration: 0.2 });
+      if (this.getSanity > 5) {
+        gsap.to('#sanity', { backgroundColor: '#d02405', duration: 0.2 });
+      }
     }
   },
   mounted() {
