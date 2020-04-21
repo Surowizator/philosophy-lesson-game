@@ -46,7 +46,7 @@ export default {
       turnedR: false,
       overL: false,
       overR: false,
-      turnable: true,
+      turnable: false,
       decision: { question: '' }
     };
   },
@@ -131,13 +131,14 @@ export default {
   mounted() {
     this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
     setTimeout(() => {
-      this.turnable = false;
       const tl = gsap.timeline();
-      tl.to('.card', { rotate: -10, duration: 0.5 });
-      tl.to('.card', { rotate: 10, duration: 1 });
-      tl.to('.card', { rotate: 0, duration: 0.5 });
-      document.querySelector('.card').focus();
-      this.turnable = true;
+      tl.to('.card', { rotate: -5, duration: 0.4 });
+      tl.to('.card', { rotate: 5, duration: 0.8 });
+      tl.to('.card', { rotate: 0, duration: 0.4 });
+      setTimeout(() => {
+        document.querySelector('.card').focus();
+        this.turnable = true;
+      }, 2000);
     }, 600);
   },
   methods: {
