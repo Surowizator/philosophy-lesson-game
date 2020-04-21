@@ -130,13 +130,15 @@ export default {
   },
   mounted() {
     this.decision = this.getDecisions[Math.floor(Math.random() * this.getDecisions.length)];
-    document.querySelector('.card').focus();
     setTimeout(() => {
+      this.turnable = false;
       const tl = gsap.timeline();
-      tl.to('.card', { rotate: -10, duration: 0.6 });
-      tl.to('.card', { rotate: 10, duration: 1.2 });
-      tl.to('.card', { rotate: 0, duration: 0.6 });
-    }, 1200);
+      tl.to('.card', { rotate: -10, duration: 0.5 });
+      tl.to('.card', { rotate: 10, duration: 1 });
+      tl.to('.card', { rotate: 0, duration: 0.5 });
+      document.querySelector('.card').focus();
+      this.turnable = true;
+    }, 600);
   },
   methods: {
     dragDown(e) {
